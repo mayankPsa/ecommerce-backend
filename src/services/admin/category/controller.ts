@@ -12,7 +12,7 @@ import { MailerUtilities } from '../../../utils/MailerUtilities';
 import { SERVICE_ACTIVE, SERVICE_ACTIVE_MSG, SERVICE_INACTIVE, SERVICE_INACTIVE_MSG, SERVICE_REQUEST_APPROVED, SERVICE_REQUEST_DIS_APPROVED } from '../../../constants';
 import * as path from "path";
 import * as fs from "fs";
-import { FirebaseUtilities } from '../../../utils/firebase';
+// import { FirebaseUtilities } from '../../../utils/firebase';
 
 export const getCategoryList = async (token: any, queryParams: any, partnerId: any, res: any) => {
   try {
@@ -192,130 +192,129 @@ export const getCategoryList = async (token: any, queryParams: any, partnerId: a
 // };
 
 
-export const updateCategoryStatus = async (req: any, res: any) => {
-  try {
-    const { id } = req.params;
-    const { status } = req.body;
+// export const updateCategoryStatus = async (req: any, res: any) => {
+//   try {
+//     const { id } = req.params;
+//     const { status } = req.body;
 
-    // Validate status
-    if (!['Active', 'InActive'].includes(status)) {
-      throw new HTTP400Error(
-        Utilities.sendResponsData({
-          code: 400,
-          message: "Invalid status. Only 'Active' or 'InActive' allowed.",
-        })
-      );
-    }
+//     // Validate status
+//     if (!['Active', 'InActive'].includes(status)) {
+//       throw new HTTP400Error(
+//         Utilities.sendResponsData({
+//           code: 400,
+//           message: "Invalid status. Only 'Active' or 'InActive' allowed.",
+//         })
+//       );
+//     }
 
-    // Find category and populate partnerId
-    const category = await categoryModel.findById(id).populate("partnerId");
-    if (!category) {
-      throw new HTTP400Error(
-        Utilities.sendResponsData({
-          code: 404,
-          message: "Category not found.",
-        })
-      );
-    }
+//     // Find category and populate partnerId
+//     const category = await categoryModel.findById(id).populate("partnerId");
+//     if (!category) {
+//       throw new HTTP400Error(
+//         Utilities.sendResponsData({
+//           code: 404,
+//           message: "Category not found.",
+//         })
+//       );
+//     }
 
-    // Update category status
-    category.status = status;
-    category.isActiveByAdmin = status === 'Active';
+//     // Update category status
+//     category.status = status;
+//     category.isActiveByAdmin = status === 'Active';
 
-    let messageObj = {
-      title: (status === 'Active') ? SERVICE_ACTIVE : SERVICE_INACTIVE,
-      body: `Service ${category.name} status is changed to ${status}.`,
-    }
+//     let messageObj = {
+//       title: (status === 'Active') ? SERVICE_ACTIVE : SERVICE_INACTIVE,
+//       body: `Service ${category.name} status is changed to ${status}.`,
+//     }
 
-    // Emit socket notification
-    const notificationData = {
-      serviceId: id,
-      message: messageObj,
-      partnerId: category.partnerId,
-      category,
-    };
-    const io = SocketUtilities.socketio.getIO();
-    io.emit('notification', notificationData);
+//     // Emit socket notification
+//     const notificationData = {
+//       serviceId: id,
+//       message: messageObj,
+//       partnerId: category.partnerId,
+//       category,
+//     };
+//     const io = SocketUtilities.socketio.getIO();
+//     io.emit('notification', notificationData);
 
-    // Save category changes
-    await category.save();
+//     // Save category changes
+//     await category.save();
 
-    // Prepare notification payload
-    const isActive = status === 'Active';
-    const notificationPayload = {
-      notification: {
-        title: isActive ? SERVICE_ACTIVE : SERVICE_INACTIVE,
-        body: isActive ? SERVICE_ACTIVE_MSG : SERVICE_INACTIVE_MSG,
-      },
-      data: {
-        title: isActive ? SERVICE_ACTIVE : SERVICE_INACTIVE,
-        body: isActive ? SERVICE_ACTIVE_MSG : SERVICE_INACTIVE_MSG,
-      },
-    };
+//     // Prepare notification payload
+//     const isActive = status === 'Active';
+//     const notificationPayload = {
+//       notification: {
+//         title: isActive ? SERVICE_ACTIVE : SERVICE_INACTIVE,
+//         body: isActive ? SERVICE_ACTIVE_MSG : SERVICE_INACTIVE_MSG,
+//       },
+//       data: {
+//         title: isActive ? SERVICE_ACTIVE : SERVICE_INACTIVE,
+//         body: isActive ? SERVICE_ACTIVE_MSG : SERVICE_INACTIVE_MSG,
+//       },
+//     };
 
-    console.log(category?.partnerId?.fcmToken,'dsadas')
-    // Send push notification if FCM token exists
+//     console.log(category?.partnerId?.fcmToken,'dsadas')
+//     // Send push notification if FCM token exists
 
-    // ********************************************
-    if (category?.partnerId?.fcmToken && (typeof category?.partnerId?.fcmToken === 'string') && category?.partnerId?.fcmToken.trim()){
-      try {
-        const messageRes = await FirebaseUtilities.firebaseSendNotification(
-          category.partnerId.fcmToken,
-          notificationPayload
-        );
-        console.log('Push notification sent:', messageRes);
-      } catch (fcmError) {
-        console.error('Error sending push notification:', fcmError);
-      }
-    } else {
-      console.warn('No FCM token found for partner:', category?.partnerId?._id);
-    }
+//     // ********************************************
+//     if (category?.partnerId?.fcmToken && (typeof category?.partnerId?.fcmToken === 'string') && category?.partnerId?.fcmToken.trim()){
+//       try {
+//         const messageRes = await FirebaseUtilities.firebaseSendNotification(
+//           category.partnerId.fcmToken,
+//           notificationPayload
+//         );
+//         console.log('Push notification sent:', messageRes);
+//       } catch (fcmError) {
+//         console.error('Error sending push notification:', fcmError);
+//       }
+//     } else {
+//       console.warn('No FCM token found for partner:', category?.partnerId?._id);
+//     }
 
-    // Send email notification
-    if (category?.partnerId?.email) {
-      const obj = {
-        serviceName: category.name
-          ? category.name.charAt(0).toUpperCase() + category.name.slice(1)
-          : '',
-        status,
-        recipient_Name: category?.partnerId?.name
-          ? category.partnerId.name.charAt(0).toUpperCase() + category.partnerId.name.slice(1)
-          : '',
-      };
+//     // Send email notification
+//     if (category?.partnerId?.email) {
+//       const obj = {
+//         serviceName: category.name
+//           ? category.name.charAt(0).toUpperCase() + category.name.slice(1)
+//           : '',
+//         status,
+//         recipient_Name: category?.partnerId?.name
+//           ? category.partnerId.name.charAt(0).toUpperCase() + category.partnerId.name.slice(1)
+//           : '',
+//       };
 
-      const templatePath = path.join(
-        process.cwd(),
-        `src/views/serviceStatus${isActive ? 'Active' : 'InActive'}.ejs`
-      );
-      let html;
-      try {
-        const template = fs.readFileSync(templatePath, 'utf-8');
-        html = await ejs.render(template, obj);
-      } catch (fileError) {
-        console.error('Error reading EJS template:', fileError);
-        throw new Error('Failed to load email template');
-      }
+//       const templatePath = path.join(
+//         process.cwd(),
+//         `src/views/serviceStatus${isActive ? 'Active' : 'InActive'}.ejs`
+//       );
+//       let html;
+//       try {
+//         const template = fs.readFileSync(templatePath, 'utf-8');
+//         html = await ejs.render(template, obj);
+//       } catch (fileError) {
+//         console.error('Error reading EJS template:', fileError);
+//         throw new Error('Failed to load email template');
+//       }
 
-      const mailData = {
-        recipient_email: [category.partnerId.email],
-        subject: isActive ? SERVICE_REQUEST_APPROVED : SERVICE_REQUEST_DIS_APPROVED,
-        text: 'message',
-        html,
-      };
-      await MailerUtilities.sendSendgridMail(mailData);
-    }
+//       const mailData = {
+//         recipient_email: [category.partnerId.email],
+//         subject: isActive ? SERVICE_REQUEST_APPROVED : SERVICE_REQUEST_DIS_APPROVED,
+//         text: 'message',
+//         html,
+//       };
+//       await MailerUtilities.sendSendgridMail(mailData);
+//     }
 
-    return Utilities.sendResponsData({
-      code: 200,
-      message: 'Category status updated successfully.',
-      data: { id, status },
-    });
-  } catch (error) {
-    const err = error as Error;
-    handleServerError(err, res);
-  }
-};
-
+//     return Utilities.sendResponsData({
+//       code: 200,
+//       message: 'Category status updated successfully.',
+//       data: { id, status },
+//     });
+//   } catch (error) {
+//     const err = error as Error;
+//     handleServerError(err, res);
+//   }
+// };
 
 export const addCategoryIcon = async (token: any, req: any, res: any) => {
   try {

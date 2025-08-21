@@ -4,7 +4,7 @@ import { handleServerError } from "../../../utils/ErrorHandler";
 import { Utilities } from "../../../utils/utilities";
 import { HTTP400Error } from "../../../utils/httpErrors";
 import { partnerModel } from "../../../db/Partners";
-import { FirebaseUtilities } from "../../../utils/firebase";
+// import { FirebaseUtilities } from "../../../utils/firebase";
 import { transactionModel } from "../../../db/transaction";
 import { generateAndUploadInvoice } from "../../../utils/FileUploadUtilities";
 import * as path from "path";
@@ -720,20 +720,20 @@ export const updateOrderStatus = async (req: any, res: any) => {
     };
 
     // ******************************************
-    if (partnerDetail?.fcmToken && (typeof partnerDetail?.fcmToken === 'string') && partnerDetail?.fcmToken?.trim()) {
-      console.log('ENTER==', partnerDetail?.fcmToken);
-      let messageRes = await FirebaseUtilities.firebaseSendNotification(
-        partnerDetail.fcmToken,
-        payload
-      );
-    }
+    // if (partnerDetail?.fcmToken && (typeof partnerDetail?.fcmToken === 'string') && partnerDetail?.fcmToken?.trim()) {
+    //   console.log('ENTER==', partnerDetail?.fcmToken);
+    //   let messageRes = await FirebaseUtilities.firebaseSendNotification(
+    //     partnerDetail.fcmToken,
+    //     payload
+    //   );
+    // }
 
-    if (userDetail?.fcmToken && (typeof userDetail?.fcmToken === 'string') && userDetail?.fcmToken?.trim()) {
-      let messageRes = await FirebaseUtilities.firebaseSendNotification(
-        userDetail.fcmToken,
-        payload
-      );
-    }
+    // if (userDetail?.fcmToken && (typeof userDetail?.fcmToken === 'string') && userDetail?.fcmToken?.trim()) {
+    //   let messageRes = await FirebaseUtilities.firebaseSendNotification(
+    //     userDetail.fcmToken,
+    //     payload
+    //   );
+    // }
 
     let serviceName = ''
     const services = order?.services;

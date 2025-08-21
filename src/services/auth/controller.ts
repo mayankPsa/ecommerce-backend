@@ -14,7 +14,7 @@ import { partnerModel } from "../../db/Partners";
 import { deliveryOptionsModel } from "../../db/DeliveryOptions";
 import { counterModel } from "../../db/Counter";
 import { HTTP400Error } from "../../utils/httpErrors";
-import admin, { sendFirebaseNotification } from '../../utils/firebase';
+// import admin, { sendFirebaseNotification } from '../../utils/firebase';
 import { MailerUtilities } from "../../utils/MailerUtilities";
 import { truncate } from "lodash";
 import { settingsModel } from "../../db/Settings";
@@ -168,221 +168,221 @@ export const register = async (req: any, next: NextFunction, res: any) => {
   }
 };
 
-export const googleAuth = async (req: Request, res: any, next: NextFunction) => {
-  try {
-    const { idToken, fcmToken } = req.body;
-    console.log('====GOOGLE LOGIN===',req.body);
-    let query: any = {}
+// export const googleAuth = async (req: Request, res: any, next: NextFunction) => {
+//   try {
+//     const { idToken, fcmToken } = req.body;
+//     console.log('====GOOGLE LOGIN===',req.body);
+//     let query: any = {}
 
-    if (!idToken) {
-      throw new HTTP400Error(
-        Utilities.sendResponsData({
-          code: 400,
-          message: TOKEN_REQUIRED.message,
-        }))
-    }
+//     if (!idToken) {
+//       throw new HTTP400Error(
+//         Utilities.sendResponsData({
+//           code: 400,
+//           message: TOKEN_REQUIRED.message,
+//         }))
+//     }
 
-    const { email, name, uid, phone_number, picture } = await admin.auth().verifyIdToken(idToken);
+//     const { email, name, uid, phone_number, picture } = await admin.auth().verifyIdToken(idToken);
 
-    console.log(email, name, uid, phone_number, ">>> email , name , uid , phone number")
+//     console.log(email, name, uid, phone_number, ">>> email , name , uid , phone number")
 
-    const CheckUser = await userModel.findOne({ email: email, isDeleted: false, otpVerified: true, type: 'normal' });
+//     const CheckUser = await userModel.findOne({ email: email, isDeleted: false, otpVerified: true, type: 'normal' });
 
-    if (CheckUser) {
-      throw new HTTP400Error(
-        Utilities.sendResponsData({
-          code: 400,
-          message: "User already registered!",
-        }))
-    }
+//     if (CheckUser) {
+//       throw new HTTP400Error(
+//         Utilities.sendResponsData({
+//           code: 400,
+//           message: "User already registered!",
+//         }))
+//     }
 
-    query["$or"] = [
-      { googleUid: uid },
-      { email: email }
-    ];
-    let user: any = await userModel.findOne(query);
+//     query["$or"] = [
+//       { googleUid: uid },
+//       { email: email }
+//     ];
+//     let user: any = await userModel.findOne(query);
 
-    if (user) {
-      // const token = generateToken(user._id, email, user.role);
-      const token = await Utilities.createJWTToken({
-        id: user._id,
-        email: email,
-        name: name,
-        role: user.role
-      });
-      if (name) user.name = name;
-      if (phone_number) user.phone = phone_number
-      user.accessToken = token;
-      user.fcmToken = fcmToken;
-      user.otpVerified = true;
-      user.type = "google"
-      user.lastLogin = new Date();
-      user.loginStreak += 1;
-      let res = await user.save();
+//     if (user) {
+//       // const token = generateToken(user._id, email, user.role);
+//       const token = await Utilities.createJWTToken({
+//         id: user._id,
+//         email: email,
+//         name: name,
+//         role: user.role
+//       });
+//       if (name) user.name = name;
+//       if (phone_number) user.phone = phone_number
+//       user.accessToken = token;
+//       user.fcmToken = fcmToken;
+//       user.otpVerified = true;
+//       user.type = "google"
+//       user.lastLogin = new Date();
+//       user.loginStreak += 1;
+//       let res = await user.save();
 
-      console.log('GOOGLE LOGIN >>> user >>>>',JSON.stringify(res))
-      return Utilities.sendResponsData({
-        code: 200,
-        message: LOGIN_SUCCESSFUL.message,
-        data: {
-          ...user.toObject(),
-          registered: true
-        }
-      });
-    }
+//       console.log('GOOGLE LOGIN >>> user >>>>',JSON.stringify(res))
+//       return Utilities.sendResponsData({
+//         code: 200,
+//         message: LOGIN_SUCCESSFUL.message,
+//         data: {
+//           ...user.toObject(),
+//           registered: true
+//         }
+//       });
+//     }
 
-    if (!user) {
-      user = new userModel({
-        fullName: name,
-        email,
-        authProvider: 'google',
-        isGuest: false,
-        role: 'User',
-        googleUid: uid,
-        fcmToken: fcmToken,
-        lastLogin: new Date(),
-        type: "google"
-      });
+//     if (!user) {
+//       user = new userModel({
+//         fullName: name,
+//         email,
+//         authProvider: 'google',
+//         isGuest: false,
+//         role: 'User',
+//         googleUid: uid,
+//         fcmToken: fcmToken,
+//         lastLogin: new Date(),
+//         type: "google"
+//       });
 
-      console.log(name, phone_number, email, ">>> condition")
-      if (name) user.name = name;
-      if (phone_number) user.phone = phone_number
-      let res = await user.save();
-      if (res) {
-        // const token = generateToken(user._id, email, user.role);
-        const token = await Utilities.createJWTToken({
-          id: user._id,
-          email: email,
-          name: name,
-          role: user.role
-        });
-         res.accessToken = token;
-         let updatedRes = await res.save();
-        console.log('GOOGLE LOGIN >>> user >>>>1',JSON.stringify(updatedRes))
-      }
-      // console.log(user,">>> user >>>>")
+//       console.log(name, phone_number, email, ">>> condition")
+//       if (name) user.name = name;
+//       if (phone_number) user.phone = phone_number
+//       let res = await user.save();
+//       if (res) {
+//         // const token = generateToken(user._id, email, user.role);
+//         const token = await Utilities.createJWTToken({
+//           id: user._id,
+//           email: email,
+//           name: name,
+//           role: user.role
+//         });
+//          res.accessToken = token;
+//          let updatedRes = await res.save();
+//         console.log('GOOGLE LOGIN >>> user >>>>1',JSON.stringify(updatedRes))
+//       }
+//       // console.log(user,">>> user >>>>")
 
-      return Utilities.sendResponsData({
-        code: 200,
-        message: LOGIN_SUCCESSFUL.message,
-        data: {
-          ...user.toObject(),
-          registered: false
-        }
-      });
-    }
-  } catch (error) {
-    const err = error as Error;
-    console.log(error, ">>> error ")
-    handleServerError(err, res)
-  }
-};
+//       return Utilities.sendResponsData({
+//         code: 200,
+//         message: LOGIN_SUCCESSFUL.message,
+//         data: {
+//           ...user.toObject(),
+//           registered: false
+//         }
+//       });
+//     }
+//   } catch (error) {
+//     const err = error as Error;
+//     console.log(error, ">>> error ")
+//     handleServerError(err, res)
+//   }
+// };
 
-export const appleAuth = async (req: Request, res: any, next: NextFunction) => {
-  try {
-    const { idToken, fcmToken } = req.body;
-    let query: any = {}
-    console.log('====APPLE LOGIN===',req.body);
+// export const appleAuth = async (req: Request, res: any, next: NextFunction) => {
+//   try {
+//     const { idToken, fcmToken } = req.body;
+//     let query: any = {}
+//     console.log('====APPLE LOGIN===',req.body);
 
-    if (!idToken) {
-      throw new HTTP400Error(
-        Utilities.sendResponsData({
-          code: 400,
-          message: TOKEN_REQUIRED.message,
-        }))
-    }
+//     if (!idToken) {
+//       throw new HTTP400Error(
+//         Utilities.sendResponsData({
+//           code: 400,
+//           message: TOKEN_REQUIRED.message,
+//         }))
+//     }
 
-    const { email, name, uid, phone_number, picture } = await admin.auth().verifyIdToken(idToken);
+//     const { email, name, uid, phone_number, picture } = await admin.auth().verifyIdToken(idToken);
 
-    const CheckUser = await userModel.findOne({ email: email, isDeleted: false, otpVerified: true, type: 'apple' });
+//     const CheckUser = await userModel.findOne({ email: email, isDeleted: false, otpVerified: true, type: 'apple' });
 
-    if (CheckUser) {
-      throw new HTTP400Error(
-        Utilities.sendResponsData({
-          code: 400,
-          message: "User already registered!",
-        }))
-    }
+//     if (CheckUser) {
+//       throw new HTTP400Error(
+//         Utilities.sendResponsData({
+//           code: 400,
+//           message: "User already registered!",
+//         }))
+//     }
 
-    query["$or"] = [
-      { appleUid: uid },
-      { email: email }
-    ];
-    let user: any = await userModel.findOne(query);
+//     query["$or"] = [
+//       { appleUid: uid },
+//       { email: email }
+//     ];
+//     let user: any = await userModel.findOne(query);
 
-    if (user) {
-      const token = await Utilities.createJWTToken({
-        id: user._id,
-        email: email,
-        name: name,
-        role: user.role
-      });
-      if (name) user.name = name;
-      if (phone_number) user.phone = phone_number
-      user.accessToken = token;
-      user.fcmToken = fcmToken;
-      user.otpVerified = true;
-      user.type = "apple"
-      user.lastLogin = new Date();
-      user.loginStreak += 1;
-      let updatedRes = await user.save();
-      console.log('APPLE LOGIN >>> user >>>>',JSON.stringify(updatedRes))
+//     if (user) {
+//       const token = await Utilities.createJWTToken({
+//         id: user._id,
+//         email: email,
+//         name: name,
+//         role: user.role
+//       });
+//       if (name) user.name = name;
+//       if (phone_number) user.phone = phone_number
+//       user.accessToken = token;
+//       user.fcmToken = fcmToken;
+//       user.otpVerified = true;
+//       user.type = "apple"
+//       user.lastLogin = new Date();
+//       user.loginStreak += 1;
+//       let updatedRes = await user.save();
+//       console.log('APPLE LOGIN >>> user >>>>',JSON.stringify(updatedRes))
 
-      return Utilities.sendResponsData({
-        code: 200,
-        message: LOGIN_SUCCESSFUL.message,
-        data: {
-          ...user.toObject(),
-          registered: true
-        }
-      });
-    }
+//       return Utilities.sendResponsData({
+//         code: 200,
+//         message: LOGIN_SUCCESSFUL.message,
+//         data: {
+//           ...user.toObject(),
+//           registered: true
+//         }
+//       });
+//     }
 
-    if (!user) {
-      user = new userModel({
-        fullName: name,
-        email,
-        authProvider: 'apple',
-        isGuest: false,
-        role: 'User',
-        appleUid: uid,
-        fcmToken: fcmToken,
-        lastLogin: new Date(),
-        type: "apple"
-      });
+//     if (!user) {
+//       user = new userModel({
+//         fullName: name,
+//         email,
+//         authProvider: 'apple',
+//         isGuest: false,
+//         role: 'User',
+//         appleUid: uid,
+//         fcmToken: fcmToken,
+//         lastLogin: new Date(),
+//         type: "apple"
+//       });
 
-      console.log(name, phone_number, email, ">>> condition")
-      if (name) user.name = name;
-      if (phone_number) user.phone = phone_number
-      let res = await user.save();
-      if (res) {
-        // const token = generateToken(user._id, email, user.role);
-        const token = await Utilities.createJWTToken({
-          id: user._id,
-          email: email,
-          name: name,
-          role: user.role
-        });
-        res.accessToken = token;
-       let updatedRe = await res.save();
-        console.log('APPLE LOGIN >>> user >>>>1',JSON.stringify(updatedRe))
-      }
+//       console.log(name, phone_number, email, ">>> condition")
+//       if (name) user.name = name;
+//       if (phone_number) user.phone = phone_number
+//       let res = await user.save();
+//       if (res) {
+//         // const token = generateToken(user._id, email, user.role);
+//         const token = await Utilities.createJWTToken({
+//           id: user._id,
+//           email: email,
+//           name: name,
+//           role: user.role
+//         });
+//         res.accessToken = token;
+//        let updatedRe = await res.save();
+//         console.log('APPLE LOGIN >>> user >>>>1',JSON.stringify(updatedRe))
+//       }
 
-      return Utilities.sendResponsData({
-        code: 200,
-        message: LOGIN_SUCCESSFUL.message,
-        data: {
-          ...user.toObject(),
-          registered: false
-        }
-      });
-    }
-  } catch (error) {
-    const err = error as Error;
-    console.log(error, ">>> error ")
-    handleServerError(err, res)
-  }
-};
+//       return Utilities.sendResponsData({
+//         code: 200,
+//         message: LOGIN_SUCCESSFUL.message,
+//         data: {
+//           ...user.toObject(),
+//           registered: false
+//         }
+//       });
+//     }
+//   } catch (error) {
+//     const err = error as Error;
+//     console.log(error, ">>> error ")
+//     handleServerError(err, res)
+//   }
+// };
 
 export const updateFcmToken = async (token: any, req: any, next: NextFunction, res: any) => {
   try {

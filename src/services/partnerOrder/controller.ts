@@ -7,7 +7,7 @@ import { orderModel } from "../../db/Order";
 import { settingsModel } from "../../db/Settings";
 import { HTTP400Error, HTTP401Error, HTTP404Error } from "../../utils/httpErrors";
 import { NextFunction } from "express";
-import { FirebaseUtilities } from "../../utils/firebase";
+// import { FirebaseUtilities } from "../../utils/firebase";
 import { notificationModel } from "../../db/Notification";
 import { userModel } from "../../db/User";
 import { NotificationtUtilities } from "../../utils/socketPublish";
@@ -969,12 +969,12 @@ export const updateOrderStatus = async (
     };
 
     // ****************************************
-    if (user?.fcmToken && (typeof user?.fcmToken === 'string') && user?.fcmToken.trim()) {
-      let messageRes = await FirebaseUtilities.firebaseSendNotification(
-        user.fcmToken,
-        payload
-      );
-    }
+    // if (user?.fcmToken && (typeof user?.fcmToken === 'string') && user?.fcmToken.trim()) {
+    //   let messageRes = await FirebaseUtilities.firebaseSendNotification(
+    //     user.fcmToken,
+    //     payload
+    //   );
+    // }
 
     let messageObj = {
       title: "Order Status Updated.",

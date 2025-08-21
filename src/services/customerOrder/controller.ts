@@ -8,7 +8,7 @@ import { settingsModel } from "../../db/Settings";
 import { HTTP400Error } from "../../utils/httpErrors";
 import { NextFunction } from "express";
 import { cartModel } from "../../db/cart";
-import { FirebaseUtilities } from "../../utils/firebase";
+// import { FirebaseUtilities } from "../../utils/firebase";
 import { partnerModel } from "../../db/Partners";
 import moment from "moment";
 import { userModel } from "../../db/User";
@@ -108,13 +108,13 @@ export const createOrder = async (token: any, req: any, res: any) => {
         },
       };
       console.log('partnerDetail?.fcmToken===>>', partnerDetail?.fcmToken);
-      if (partnerDetail?.fcmToken && (typeof partnerDetail?.fcmToken === 'string') && partnerDetail?.fcmToken?.trim()) {
-        console.log('ENTER==', partnerDetail?.fcmToken);
-        let messageRes = await FirebaseUtilities.firebaseSendNotification(
-          partnerDetail.fcmToken,
-          payload
-        );
-      }
+      // if (partnerDetail?.fcmToken && (typeof partnerDetail?.fcmToken === 'string') && partnerDetail?.fcmToken?.trim()) {
+      //   console.log('ENTER==', partnerDetail?.fcmToken);
+      //   let messageRes = await FirebaseUtilities.firebaseSendNotification(
+      //     partnerDetail.fcmToken,
+      //     payload
+      //   );
+      // }
     }
 
     if (result) {

@@ -5,7 +5,7 @@ import mongoose = require("mongoose");
 import { ChatMessages } from "../db/chatMessages";
 import { userModel } from "../db/User";
 import { partnerModel } from "../db/Partners";
-import { FirebaseUtilities } from "./firebase";
+// import { FirebaseUtilities } from "./firebase";
 import { orderModel } from "../db/Order";
 import { notificationModel } from "../db/Notification";
 
@@ -194,7 +194,7 @@ export class ChatUtilities {
               },
             };
 
-            await FirebaseUtilities.firebaseSendNotification(fcmToken, payload);
+            // await FirebaseUtilities.firebaseSendNotification(fcmToken, payload);
           }
             const notification = {
               orderId,

@@ -1,5 +1,5 @@
 import moment from "moment";
-import { FirebaseUtilities, sendFirebaseNotification } from "./firebase";
+// import { FirebaseUtilities, sendFirebaseNotification } from "./firebase";
 import { orderModel } from "../db/Order";
 import { userModel } from "../db/User";
 import { MailerUtilities } from "./MailerUtilities";
@@ -57,8 +57,8 @@ export class cronServer {
           customer.fcmToken.trim()
         ) {
           try {
-            await FirebaseUtilities.firebaseSendNotification(customer.fcmToken, payload);
-            console.log(`Notification sent to user ${customer._id} for expired order ${order._id}`);
+            // await FirebaseUtilities.firebaseSendNotification(customer.fcmToken, payload);
+            // console.log(`Notification sent to user ${customer._id} for expired order ${order._id}`);
           } catch (err) {
             console.error(`Failed to send notification to user ${customer._id}:`, err);
           }

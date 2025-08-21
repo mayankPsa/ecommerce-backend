@@ -12,13 +12,10 @@ import {
   createNePassword,
   onboardingLocation,
   partnerLogin,
-  googleAuth,
   updateFcmToken,
   sendResetPasswordOtp,
   confirmResetPassword,
   partnerLogout,
-  appleAuth,
-  refreshFCMToken,
   refreshAccessToken
 } from "./controller";
 import {
@@ -93,28 +90,28 @@ export default [
       },
     ],
   },
-  {
-    path: currentPathURL + '/google-login',
-    method: "post",
-    handler: [
-      // googleAuthValidator,
-      async (req: Request, res: any, next: NextFunction) => {
-        const result = await googleAuth(req, res, next);
-        res.status(200).send(result);
-      },
-    ],
-  },
-  {
-    path: currentPathURL + '/apple-login',
-    method: "post",
-    handler: [
-      // googleAuthValidator,
-      async (req: Request, res: any, next: NextFunction) => {
-        const result = await appleAuth(req, res, next);
-        res.status(200).send(result);
-      },
-    ],
-  },
+  // {
+  //   path: currentPathURL + '/google-login',
+  //   method: "post",
+  //   handler: [
+  //     // googleAuthValidator,
+  //     async (req: Request, res: any, next: NextFunction) => {
+  //       const result = await googleAuth(req, res, next);
+  //       res.status(200).send(result);
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: currentPathURL + '/apple-login',
+  //   method: "post",
+  //   handler: [
+  //     // googleAuthValidator,
+  //     async (req: Request, res: any, next: NextFunction) => {
+  //       const result = await appleAuth(req, res, next);
+  //       res.status(200).send(result);
+  //     },
+  //   ],
+  // },
   {
     path: currentPathURL + '/update-fcm-token',
     method: 'post',
@@ -250,16 +247,16 @@ export default [
     ],
   },
 
-  {
-    path: currentPathURL + '/refreshFCMToken',
-    method: "post",
-    handler: [
-      async (req: Request, res: Response) => {
-        const result = await refreshFCMToken(req.get(AUTHORIZATION),req, res);
-        res.status(200).send(result);
-      }
-    ]
-  },
+  // {
+  //   path: currentPathURL + '/refreshFCMToken',
+  //   method: "post",
+  //   handler: [
+  //     async (req: Request, res: Response) => {
+  //       const result = await refreshFCMToken(req.get(AUTHORIZATION),req, res);
+  //       res.status(200).send(result);
+  //     }
+  //   ]
+  // },
 
   {
     path: currentPathURL + '/refreshAccessToken',

@@ -11,7 +11,7 @@ import { NextFunction } from 'express';
 import * as bcrypt from "bcrypt";
 import { saltRound } from '../../../constants';
 import { FileUpload } from '../../../utils/FileUploadUtilities';
-import { FirebaseUtilities } from '../../../utils/firebase';
+// import { FirebaseUtilities } from '../../../utils/firebase';
 import { orderModel } from '../../../db/Order';
 import { userModel } from '../../../db/User';
 import * as path from "path";
@@ -145,12 +145,12 @@ export const updatePartnerStatus = async (req: any, res: any) => {
     };
 
     // **********************************
-    if (partner?.fcmToken && (typeof partner?.fcmToken === 'string') && partner?.fcmToken?.trim()) {
-      let messageRes = await FirebaseUtilities.firebaseSendNotification(
-        partner.fcmToken,
-        payload
-      );
-    }
+    // if (partner?.fcmToken && (typeof partner?.fcmToken === 'string') && partner?.fcmToken?.trim()) {
+    //   let messageRes = await FirebaseUtilities.firebaseSendNotification(
+    //     partner.fcmToken,
+    //     payload
+    //   );
+    // }
 
     return Utilities.sendResponsData({
       code: 200,

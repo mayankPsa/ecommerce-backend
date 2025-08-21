@@ -5,8 +5,7 @@ import {
   getCategoryList,
   getIconDetail,
   getIconList,
-  updateCategoryStatus,
-  updateIcon,
+  updateIcon
 } from "./controller";
 import { checkAuthenticate } from "../../auth/middleware/check";
 import { AUTHORIZATION } from "../../../constants";
@@ -76,17 +75,17 @@ export default [
     ]
   },
 
-  {
-    path: currentPathURL + "/update-status/:id",
-    method: "put",
-    handler: [
-      checkAuthenticate,
-      async (req: any, res: Response) => {
-        const result = await updateCategoryStatus(req, res);
-        res.status(200).send(result);
-      },
-    ],
-  },
+  // {
+  //   path: currentPathURL + "/update-status/:id",
+  //   method: "put",
+  //   handler: [
+  //     checkAuthenticate,
+  //     async (req: any, res: Response) => {
+  //       const result = await updateCategoryStatus(req, res);
+  //       res.status(200).send(result);
+  //     },
+  //   ],
+  // },
   {
     path: currentPathURL + '/icon/:id',
     method: "put",

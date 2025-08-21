@@ -16,7 +16,7 @@ import { MailerUtilities } from "../../utils/MailerUtilities";
 import moment from "moment";
 import * as path from "path";
 import * as fs from "fs";
-import { FirebaseUtilities } from "../../utils/firebase";
+// import { FirebaseUtilities } from "../../utils/firebase";
 import { BLOCK_BY_PARTNER, BLOCK_MESSAGE } from "../../constants";
 import { orderModel } from "../../db/Order";
 import { cartModel } from "../../db/cart";
@@ -258,12 +258,12 @@ export const blockUserByPartner = async (req: any, res: any) => {
       };
 
       // *************************************
-      if (userRes?.fcmToken && (typeof userRes?.fcmToken === 'string') && userRes?.fcmToken?.trim()){
-        let messageRes = await FirebaseUtilities.firebaseSendNotification(
-          userRes.fcmToken,
-          payload
-        );
-      }
+      // if (userRes?.fcmToken && (typeof userRes?.fcmToken === 'string') && userRes?.fcmToken?.trim()){
+      //   let messageRes = await FirebaseUtilities.firebaseSendNotification(
+      //     userRes.fcmToken,
+      //     payload
+      //   );
+      // }
 
       const templateFileName = bodyData.status === true
         ? 'block-user-email.ejs'
