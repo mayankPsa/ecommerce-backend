@@ -113,7 +113,7 @@ export const FETCH_LISTING_SUCCESS = {
 
 export const EMAIL_EXIST = {
   message: "Email already exists.",
-  details: "Partner with this email already exists.",
+  details: "Customer with this email already exists.",
 };
 
 export const CATEGORY_SUCCESS_MESSAGES = {

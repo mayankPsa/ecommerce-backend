@@ -931,7 +931,7 @@ export const logout = async (token: any) => {
 export const createAdmin = async () => {
   try {
     let pass = await Utilities.cryptPassword("Qwerty@1");
-    let userRes: any = await userModel.findOne({ email: "peakup2025@gmail.com", isDeleted: false });
+    let userRes: any = await userModel.findOne({ email: "admin@yopmail.com", isDeleted: false });
 
     const counterExists = await counterModel.findOne({ name: "orderId" });
     if (!counterExists) {

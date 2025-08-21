@@ -2,7 +2,7 @@ import authRoutes from './auth/routes';
 import userRoutes from './user/routes';
 import categoryRoutes from './category/routes';
 import subCategoryRoutes from './subcategory/routes';
-import adminPartnerRoutes from './admin/partner/routes'
+import adminCustomerRoutes from './admin/customer/routes'
 import partnerRoutes from './partner/routes'
 import deliveryOptionsRoutes from './deliveryOptions/routes'
 import customerAddressRoutes from './customerAdress/routes'
@@ -27,7 +27,7 @@ export default [
     ...userRoutes,
     ...categoryRoutes,
     ...subCategoryRoutes,
-    ...adminPartnerRoutes, 
+    ...adminCustomerRoutes, 
     ...partnerRoutes,
     ...deliveryOptionsRoutes,
     ...customerAddressRoutes,

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import {
-  getPartnerList,
+  getCustomerList,
   getPartnerDetail,
   deletePartner,
-  createPartner,
+  createCustomer,
   editPartner,
   partnerForgotPassword,
   verifyPartnerOTP,
@@ -17,7 +17,7 @@ import { checkAuthenticate, checkCreateNewPassword, checkForgotPassword, checkOT
 import { uploadFile } from "../../../utils/FileUploadUtilities";
 import { validatePartnerProfile } from "../../partner/middleware/check";
 const basePath = process.env.BASE_PATH;
-const currentPath = "admin/partners";
+const currentPath = "admin/customer";
 const currentPathURL = basePath + currentPath;
 
 export default [
@@ -25,10 +25,10 @@ export default [
     path: currentPathURL + "/create",
     method: "post",
     handler: [
-      uploadFile("photos", true),
+      uploadFile("profile", true),
       // checkAuthenticate,
       async (req: Request, res: Response) => {
-        const result = await createPartner(req, res);
+        const result = await createCustomer(req, res);
         res.status(201).send(result);
       },
     ],
@@ -99,7 +99,7 @@ export default [
     handler: [
       // checkAuthenticate,
       async (req: Request, res: Response) => {
-        const result = await getPartnerList(req.get(AUTHORIZATION), req.query, res);
+        const result = await getCustomerList(req.get(AUTHORIZATION), req.query, res);
         res.status(200).send(result);
       },
     ],
