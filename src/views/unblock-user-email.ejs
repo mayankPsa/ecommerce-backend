@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Account Unblocked</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f4; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden;">
+          <!-- Header -->
+          <tr>
+            <td align="center" bgcolor="#64b5f6" style="padding: 20px;">
+              <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/logo.png" alt="Peak Up Logo" style="height: 40px;" />
+            </td>
+          </tr>
+
+          <!-- Greeting -->
+          <tr>
+            <td style="padding: 20px; font-size: 16px; font-weight: 500;">
+              Hi <%= name || 'User' %>,
+            </td>
+          </tr>
+
+          <!-- Banner Card -->
+          <tr>
+            <td align="center" style="padding: 0 20px 20px 20px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="border-radius: 10px; background: linear-gradient(180deg, #7B80F6 0%, #4CDEDE 100%);">
+                <tr>
+                  <td align="center" style="padding: 30px 20px;">
+                    <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/email.png" width="50" alt="Icon" />
+                    <h2 style="color: #ffffff; margin: 20px 0 10px; font-size: 22px;">Your Account Has Been Unblocked</h2>
+                    <p style="color: #ffffff; font-size: 16px; line-height: 1.4; max-width: 480px; margin: 0 auto;">
+                      We’ve reviewed your case and your Peak Up account has now been successfully restored. You can log in and continue using our services.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Info Section -->
+          <tr>
+            <td style="padding: 0 20px 20px 20px; font-size: 14px; color: #333;">
+              <p style="font-size: 16px; font-weight: 600;">What’s next?</p>
+              <p style="margin-bottom: 16px;">
+                You can now access your account as usual. If you experience any further issues or have any questions, don’t hesitate to contact our support team.
+              </p>
+              <p><strong>Unblocked At:</strong> <%= unblockedAt %></p>
+              <p style="margin-top: 20px;">
+                <a href="mailto:peakup2025@gmail.com" style="color: #64b5f6; text-decoration: none; font-weight: bold;">support@peakup.com</a>
+              </p>
+              <p style="margin-top: 30px;">
+                Warmly,<br />
+                <strong>Team Peak Up</strong>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td align="center" bgcolor="#4D6380" style="padding: 30px;">
+              <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/logo.png" alt="Peak Up Logo" style="height: 40px; margin-bottom: 10px;" />
+              <p style="font-size: 13px; color: #ffffff; font-weight: bold;">
+                Address: Magdalo Streets, La Paz, Iloilo City, Philippines
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

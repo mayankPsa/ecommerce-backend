@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Your Service Has Been Approved</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f4; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden;">
+          <tr>
+            <td align="center" bgcolor="#64b5f6" style="padding: 20px;">
+              <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/logo.png" alt="Peak Up Logo" style="height: 40px;" />
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding: 20px; font-size: 16px; font-weight: 500;">
+              Hi <%= recipient_Name %>,
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" style="padding: 0 20px 20px 20px;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="border-radius: 10px; background: linear-gradient(180deg, #7B80F6 0%, #4CDEDE 100%);">
+                <tr>
+                  <td align="center" style="padding: 30px 20px;">
+                    <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/email.png" width="50" alt="Icon" />
+                    <h2 style="color: #ffffff; margin: 20px 0 10px; font-size: 22px;">Your Service Has Been Approved!</h2>
+                    <p style="color: #ffffff; font-size: 16px; line-height: 1.4; max-width: 480px; margin: 0 auto;">
+                      Great news! Your service has been approved. We're getting everything ready so you can provide a smooth, top-quality experience.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding: 0 20px 20px 20px; font-size: 14px; color: #333;">
+              <p style="font-size: 16px; font-weight: 600;">Great news!</p>
+              <p>
+                Your new service, <strong><%= serviceName %></strong>, has been approved and is now live on the PeakUp platform.
+              </p>
+
+              <ul style="padding-left: 20px;">
+                <li><strong>Service Name:</strong> <%= serviceName %></li>
+                <li><strong>Status:</strong> Approved & Active </li>
+              </ul>
+
+              <p>
+                You can now manage this service, track orders, and start receiving bookings through your partner dashboard.
+              </p>
+              <p>
+                <strong><a href="#">Go to Dashboard</a></strong>
+              </p>
+              <p>
+                Thanks for being a valuable part of the PeakUp network. Let’s keep laundry simple, fast, and fresh!
+              </p>
+
+              <p>Warm regards,<br/>Team PeakUp</p>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" bgcolor="#4D6380" style="padding: 30px;">
+              <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/logo.png" alt="Peak Up Logo" style="height: 40px; margin-bottom: 10px;" />
+              <!-- <p style="color: #ffffff; margin: 10px 0;">
+                <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/facebook.png" style="margin: 0 5px;" />
+                <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/instagram.png" style="margin: 0 5px;" />
+                <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/twitter.png" style="margin: 0 5px;" />
+                <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/tiktok.png" style="margin: 0 5px;" />
+                <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/youtube.png" style="margin: 0 5px;" />
+              </p>
+              <p style="font-size: 14px; color: #ffffff;">
+                Want to manage the emails you receive from us? You can update your preferences here, unsubscribe here, or view our privacy policy here.
+              </p> -->
+              <p style="font-size: 13px; color: #ffffff; font-weight: bold;">
+                Address: Magdalo Streets, La Paz, Iloilo City, Philippines
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

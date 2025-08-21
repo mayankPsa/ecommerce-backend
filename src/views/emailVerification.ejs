@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Verify Your Email</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+        }
+    </style>
+</head>
+
+<body style="margin:0 auto; padding:0; background-color:#f4f4f4; font-family: 'Roboto', sans-serif;">
+    <table width="600" cellpadding="0" cellspacing="0" style="font-family:Arial, sans-serif; margin: auto;background-color:#ffffff;">
+        <tr>
+            <td>
+                <table width="600" cellpadding="0" cellspacing="0" style="font-family:Arial, sans-serif;">
+                    <!-- Header -->
+                    <tr>
+                        <td align="center" bgcolor="#64b5f6" style="padding: 1rem 0;">
+                            <table width="600" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td align="center">
+                                        <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/logo.png" alt="Peak Up Logo" style="display:block;" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" style="padding: 20px;">
+                <table width="600" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="border-radius:8px;">
+                    <tr>
+                        <td style="padding: 20px; font-size: 20px; font-weight: 600; font-family: 'Roboto', sans-serif;">
+                            Hi <%= recipient_Name %>,
+                        </td>
+                    </tr>
+
+                    <!-- Main Image Card -->
+                    <tr>
+                        <td align="center" style="padding: 0 20px 20px 20px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" bgcolor="#a6d1f3"
+                                style="border-radius:10px; background: linear-gradient(180deg, #7B80F6 0%, #4CDEDE 100%);">
+                                <tr>
+                                    <td align="center" style="padding: 30px 20px;">
+                                        <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/email.png" width="50" alt="Email Icon"
+                                            style="display:block;" />
+                                        <h2 style="color:#ffffff; margin:20px 0 10px; font-size: 24px; line-height: 120%;">Verify Your Email for Peak Up</h2>
+                                        <p style="color:#ffffff; max-width: 480px; margin: 0 auto; line-height: 120%; font-size: 16px; font-weight: 400;">
+                                            Verify your email to complete your Peak Up Laundry registration and enjoy
+                                            fast, reliable, and convenient laundry services at your doorstep.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- OTP Section -->
+                     <tr>
+                        <td style="padding: 20px; font-size: 20px; font-weight: 600; font-family: 'Roboto', sans-serif;">
+                            Verify Your Email for PeakUp
+                        </td>
+                     </tr>
+                    <tr>
+                        <td style="padding: 0 20px 20px 20px; font-size: 16px; color: #101010; font-family: 'Roboto', sans-serif;">
+                            Welcome to PeakUp — your on-demand laundry solution!<br /><br />
+                            To get started, please verify your email address by using the One-Time Password (OTP) below:
+                            <strong style="font-size: 20px;"><%= otp %></strong><br /><br />
+                            This code is valid for 10 minutes. Please don’t share it with anyone for security
+                            reasons.<br /><br />
+                            Need help? Reach out to us at <a href="mailto:support@peakup.app">support@peakup.app</a> or
+                            through the app’s help center.<br /><br />
+                            Thanks for joining PeakUp — fresh laundry is just a tap away!<br /><br />
+                            Warmly,<br /><br />
+                            Peak Up Team
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+            <td align="center" bgcolor="#4D6380" style="padding: 30px 0;">
+                <table width="600" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td align="center">
+                                        <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/logo.png" alt="Peak Up Logo" style="display:block;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="color: #ffffff;">
+                            <p style="margin: 15px 0;">
+                                <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/facebook.png" />
+                                <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/instagram.png" />
+                                <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/twitter.png" />
+                                <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/tiktok.png" />
+                                <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/youtube.png" />
+                            </p>
+                            <p style="font-size: 14px; color: #ffffff; margin: 10px 0; font-family: 'Roboto', sans-serif; font-weight: 300;">
+                                Want to manage the emails you receive from us? You can update your preferences here,
+                                unsubscribe here, or view our privacy policy here.
+                            </p>
+                            <p style="font-size: 13px; color: #ffffff; font-weight: bold;">Show Address here...</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

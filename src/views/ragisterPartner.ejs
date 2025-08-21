@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome Partner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+    }
+  </style>
+</head>
+
+<body style="margin:0 auto; padding:0; background-color:#f4f4f4; font-family: 'Roboto', sans-serif;">
+  <table width="600" cellpadding="0" cellspacing="0" style="margin: auto; background-color:#ffffff;">
+    <!-- Header -->
+    <tr>
+      <td align="center" bgcolor="#64b5f6" style="padding: 1rem 0;">
+        <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/logo.png" alt="Peak Up Logo" style="display:block;" />
+      </td>
+    </tr>
+
+    <!-- Greeting -->
+    <tr>
+      <td style="padding: 20px; font-size: 20px; font-weight: 600;">
+        New Registration,
+      </td>
+    </tr>
+
+    <!-- Welcome Block -->
+    <tr>
+      <td align="center" style="padding: 0 20px 20px 20px;">
+        <table width="100%" cellpadding="0" cellspacing="0" bgcolor="#a6d1f3"
+          style="border-radius:10px; background: linear-gradient(180deg, #7B80F6 0%, #4CDEDE 100%);">
+          <tr>
+            <td align="center" style="padding: 30px 20px;">
+              <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/email.png" width="50" alt="Email Icon"
+                style="display:block;" />
+              <h2 style="color:#ffffff; margin:20px 0 10px; font-size: 24px; line-height: 120%;">Welcome to PeakUp Partner Portal</h2>
+              <p style="color:#ffffff; max-width: 480px; margin: 0 auto; line-height: 120%; font-size: 16px; font-weight: 400;">
+                You are just a step away from accessing your PeakUp Laundry Service partner account. Below are your login credentials.
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Credentials -->
+    <tr>
+      <td style="padding: 20px; font-size: 16px; font-family: 'Roboto', sans-serif;">
+        <p><strong>Email:</strong> <%= email %></p>
+        <p><strong>Password:</strong> <%= password %></p>
+        <br />
+        Please use these credentials to log in to your partner dashboard and start managing your laundry services.
+        <br /><br />
+        Thank you for joining PeakUp!
+        <br /><br />
+        Best Regards,<br />
+        <strong>Team PeakUp</strong>
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td align="center" bgcolor="#4D6380" style="padding: 30px 0;">
+        <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/logo.png" alt="Peak Up Logo" style="display:block;" />
+        <!-- <p style="margin: 15px 0;">
+          <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/facebook.png" />
+          <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/instagram.png" />
+          <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/twitter.png" />
+          <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/tiktok.png" />
+          <img src="https://peakup-content.s3.ap-southeast-1.amazonaws.com/youtube.png" />
+        </p> -->
+        <!-- <p style="font-size: 14px; color: #ffffff; margin: 10px 0; font-weight: 300;">
+          Want to manage the emails you receive from us? You can update your preferences here, unsubscribe here, or view our privacy policy here.
+        </p> -->
+        <p style="font-size: 13px; color: #ffffff; font-weight: bold;">Address: Magdalo Streets, La Paz, Iloilo City, Philippines</p>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

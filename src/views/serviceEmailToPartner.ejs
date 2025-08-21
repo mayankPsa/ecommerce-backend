@@ -1,0 +1,78 @@
+<table style="width: 100%; max-width: 660px; margin: auto; font-family: 'Rubik', sans-serif; background-color: #ffffff;">
+  <%- await include('header'); -%>
+
+  <!-- Gradient Banner Section -->
+  <tr>
+    <td>
+      <table style="width: 100%; text-align: center; background: linear-gradient(90deg, #5fc9f3 0%, #91e5cf 100%); padding: 32px 24px; color: white; border-radius: 0 0 12px 12px;">
+        <tr>
+          <td>
+            <img src="https://cdn-icons-png.flaticon.com/512/1827/1827349.png" alt="Approval Icon" width="48" height="48" style="margin-bottom: 12px;" />
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size: 20px; font-weight: bold;">New Service Request Pending Approval</td>
+        </tr>
+        <tr>
+          <td style="font-size: 14px; padding-top: 8px;">
+            Your new service request is pending approval—sit tight while we review and confirm the details to get things started smoothly.
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- Service Details Section -->
+  <tr>
+    <td>
+      <table style="width: 100%; padding: 24px; font-size: 16px; color: #333333;">
+        <tr>
+          <td style="padding-bottom: 12px;">Hi <strong><%= userName %></strong>,</td>
+        </tr>
+
+        <tr>
+          <td>A new service has been added by a partner and is pending your review.</td>
+        </tr>
+
+        <tr><td style="height: 20px;"></td></tr>
+
+        <tr>
+          <td>
+            <strong>Service Details</strong><br /><br />
+            <ul style="list-style: none; padding-left: 0;">
+              <li><strong>Name:</strong> partnerName </li>
+              <li><strong>Service Name:</strong> serviceName</li>
+              <li><strong>Category:</strong>  serviceCategory </li>
+              <li><strong>Price:</strong> servicePrice </li>
+              <li><strong>Submitted On:</strong> submittedDate</li>
+              <!-- <li><strong>Name:</strong> <%= partnerName %></li>
+              <li><strong>Service Name:</strong> <%= serviceName %></li>
+              <li><strong>Category:</strong> <%= serviceCategory %></li>
+              <li><strong>Price:</strong> <%= servicePrice %></li>
+              <li><strong>Submitted On:</strong> <%= submittedDate %></li> -->
+            </ul>
+          </td>
+        </tr>
+
+        <tr><td style="height: 20px;"></td></tr>
+
+        <tr>
+          <td>
+            Please log in to the admin dashboard to approve or disapprove this request. If you have any questions or need more details, feel free to reach out to the support team.
+          </td>
+        </tr>
+
+        <tr><td style="height: 30px;"></td></tr>
+
+        <tr>
+          <td>
+            Warmly,<br />
+            Team Peak Up
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <%- await include('footer'); -%>
+</table>
