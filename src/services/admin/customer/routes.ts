@@ -4,13 +4,7 @@ import {
   getPartnerDetail,
   deletePartner,
   createCustomer,
-  editPartner,
-  partnerForgotPassword,
-  verifyPartnerOTP,
-  createPartnerNePassword,
-  updatePartnerStatus,
-  getUsersByPartner,
-  getUserById,
+  editCustomer
 } from "./controller";
 import { AUTHORIZATION } from "../../../constants";
 import { checkAuthenticate, checkCreateNewPassword, checkForgotPassword, checkOTP, checkPartnerAuthenticate } from "../../auth/middleware/check";
@@ -34,60 +28,14 @@ export default [
     ],
   },
   {
-    path: currentPathURL + "/forgotPassword",
-    method: "post",
-    handler: [
-      checkForgotPassword,
-      async (req: Request, res: Response, next: NextFunction) => {
-        const result = await partnerForgotPassword(req.body, res);
-        res.status(200).send(result);
-      },
-    ],
-  },
-  {
-    path: currentPathURL + "/update-status/:id",
-    method: "put",
-    handler: [
-      checkAuthenticate,
-      async (req: any, res: Response) => {
-        const result = await updatePartnerStatus(req, res);
-        res.status(200).send(result);
-      },
-    ],
-  },
-  {
-    path: currentPathURL + "/verifyOTP",
-    method: "post",
-    handler: [
-      checkOTP,
-      async (req: Request, res: Response, next: NextFunction) => {
-        const result = await verifyPartnerOTP(req, res, next);
-        res.status(200).send(result);
-      },
-    ],
-  },
-
-  {
-    path: currentPathURL + "/createNePassword",
-    method: "post",
-    handler: [
-      checkCreateNewPassword,
-      async (req: Request, res: Response, next: NextFunction) => {
-        const result = await createPartnerNePassword(req.body, res);
-        res.status(200).send(result);
-      },
-    ],
-  },
-
-  {
     path: currentPathURL + "/edit/:id",
     method: "put",
     handler: [
-      uploadFile("photos", true),
+      uploadFile("profile", true),
       // checkPartnerAuthenticate,
       // validatePartnerProfile,
       async (req: Request, res: Response) => {
-        const result = await editPartner(req, res);
+        const result = await editCustomer(req, res);
         res.status(200).send(result);
       },
     ],
@@ -100,29 +48,6 @@ export default [
       // checkAuthenticate,
       async (req: Request, res: Response) => {
         const result = await getCustomerList(req.get(AUTHORIZATION), req.query, res);
-        res.status(200).send(result);
-      },
-    ],
-  },
-  {
-    path: currentPathURL + "/get-users-by-partner",
-    method: "get",
-    handler: [
-      checkAuthenticate,
-      checkPartnerAuthenticate,
-      async (req: Request, res: Response) => {
-        const result = await getUsersByPartner(req.get(AUTHORIZATION), req, res);
-        res.status(200).send(result);
-      },
-    ],
-  },
-  {
-    path: currentPathURL + "/get-user-by-parnterid/:id",
-    method: "get",
-    handler: [
-      checkPartnerAuthenticate,
-      async (req: Request, res: Response) => {
-        const result = await getUserById(req.params.id, req, res);
         res.status(200).send(result);
       },
     ],
@@ -155,10 +80,10 @@ export default [
     path: currentPathURL + "/detail/:id",
     method: "put",
     handler: [
-      uploadFile("photos", true),
+      uploadFile("profile", true),
       checkPartnerAuthenticate,
       async (req: Request, res: Response) => {
-        const result = await editPartner(req, res);
+        const result = await editCustomer(req, res);
         res.status(200).send(result);
       },
     ],
